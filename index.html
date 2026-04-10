@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Suvinil - Tintas Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        suvinil: {
+                            orange: '#F15A24',
+                            red: '#D32F2F',
+                            dark: '#1F2937',
+                            light: '#F9FAFB',
+                            gray: '#4B5563'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F3F4F6; }
+        .modal-open { overflow: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .product-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+        th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #e5e7eb; font-size: 0.875rem; }
+        th { background-color: #f9fafb; font-weight: 600; color: #374151; }
+        tr:nth-child(even) { background-color: #fcfcfc; }
+        
+        /* Novas Classes para as adições */
+        .color-swatch { transition: all 0.2s ease-in-out; cursor: pointer; }
+        .color-swatch:hover { transform: scale(1.15) translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); z-index: 10; border: 2px solid white; }
+        .trend-card { transition: all 0.3s ease; }
+        .trend-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .fab-button { animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        .tooltip-custom { visibility: hidden; opacity: 0; transition: opacity 0.3s; }
+        .color-swatch:hover .tooltip-custom { visibility: visible; opacity: 1; }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
+
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-suvinil-orange rounded-lg flex items-center justify-center text-white font-bold text-2xl shadow-md">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-suvinil-dark leading-tight">Suvinil</h1>
+                        <p class="text-xs text-gray-500 font-medium tracking-wide uppercase">Catálogo Casas da Água</p>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="relative">
+                        <input type="text" id="global-search" placeholder="Buscar produto, atributo, acabamento..." class="w-80 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-suvinil-orange focus:border-transparent transition-shadow">
+                        <i class="fa-solid fa-search absolute left-4 top-3 text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+
+    <section class="relative bg-suvinil-dark text-white">
+        <div class="absolute inset-0 overflow-hidden">
+<img src="fundo.png" alt="Fachada pintada" class="w-full h-full object-cover opacity-30">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 flex flex-col items-center text-center">
+            <span class="px-4 py-1 bg-suvinil-orange text-white text-xs font-bold uppercase tracking-wider rounded-full mb-6">Mais de 1.700 cores no sistema SelfColor</span>
+            <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">A Tinta Perfeita para<br><span class="text-suvinil-orange">Cada Superfície</span></h2>
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mb-8">Descubra as linhas completas da Suvinil com proteção, rendimento e o acabamento impecável que o seu projeto exige. Extraído integralmente dos Boletins Técnicos Oficiais.</p>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <section class="mb-10 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row gap-4 items-center justify-between z-30 relative">
+            <div class="flex flex-wrap gap-4 w-full md:w-auto">
+                <div class="flex flex-col w-full md:w-auto">
+                    <label class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Linha</label>
+                    <select id="filter-linha" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-suvinil-orange focus:border-suvinil-orange block w-full p-2.5">
+                        <option value="all">Todas as Linhas</option>
+                        <option value="Toque">Linha Toque</option>
+                        <option value="Inova">Linha Inova</option>
+                        <option value="Fachada">Linha Fachada</option>
+                        <option value="Standard">Standard / Rende Muito</option>
+                    </select>
+                </div>
+                <div class="flex flex-col w-full md:w-auto">
+                    <label class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Acabamento</label>
+                    <select id="filter-acabamento" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-suvinil-orange focus:border-suvinil-orange block w-full p-2.5">
+                        <option value="all">Todos os Acabamentos</option>
+                        <option value="Fosco">Fosco</option>
+                        <option value="Acetinado">Acetinado (Seda)</option>
+                        <option value="Semibrilho">Semibrilho (Brilho)</option>
+                        <option value="Emborrachada">Emborrachada</option>
+                    </select>
+                </div>
+            </div>
+            <div class="text-sm text-gray-500 font-medium" id="result-count">
+                Exibindo 7 produtos
+            </div>
+        </section>
+
+        <section id="colors-section" class="mb-12 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative z-20 overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-suvinil-orange/10 to-transparent rounded-bl-full pointer-events-none"></div>
+            <div class="flex flex-col md:flex-row justify-between items-end mb-6 relative z-10">
+                <div class="max-w-2xl">
+                    <h3 class="text-3xl font-extrabold text-gray-900 mb-2 flex items-center gap-3">
+                        <i class="fa-solid fa-palette text-suvinil-orange"></i> Mais de 1.700 cores Suvinil SelfColor
+                    </h3>
+                    <p class="text-gray-600">Encontre o tom perfeito para expressar a sua personalidade. O sistema SelfColor está disponível em todas as linhas premium do catálogo.</p>
+                </div>
+                <button onclick="openFullColorModal()" class="mt-4 md:mt-0 whitespace-nowrap bg-white border-2 border-suvinil-orange text-suvinil-orange hover:bg-suvinil-orange hover:text-white px-6 py-2.5 rounded-full font-bold transition-all shadow-sm">
+                    A nossa sugestão de cores
+                </button>
+            </div>
+            
+            <div id="color-palette-container" class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-3 mb-4 relative z-10">
+                </div>
+        </section>
+
+        <section id="trends-section" class="mb-16 z-20 relative">
+            <div class="text-center mb-10">
+                <span class="px-4 py-1 bg-gray-900 text-white text-xs font-bold uppercase tracking-wider rounded-full mb-3 inline-block">PRODUTOS</span>
+<!--                 <h3 class="text-3xl font-extrabold text-gray-900">Tendências Suvinil 2026</h3>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-3">Tons que acolhem, inspiram e transformam os espaços. Descubra as paletas em alta para o ano.</p> -->
+            <div id="trends-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                </div>
+        </section>
+
+        <section id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+            </section>
+
+    </main>
+
+<button id="fab-calc" onclick="openCalcModal()" 
+    class="fixed bottom-8 right-8 z-40 bg-suvinil-orange text-white rounded-full p-4 shadow-xl 
+           hover:ring-4 hover:ring-orange-200 transition-all duration-300 flex items-center group overflow-hidden max-w-[60px] hover:max-w-[300px]">
+    
+    <i class="fa-solid fa-fill-drip text-2xl animate-bounce-slow min-w-[24px]"></i>
+    
+    <div class="flex flex-col items-start leading-none ml-0 opacity-0 group-hover:opacity-100 group-hover:ml-3 transition-all duration-300 whitespace-nowrap">
+        <span class="text-[10px] uppercase opacity-80 font-bold">Calculadora</span>
+        <span class="text-lg font-black">Quanto preciso?</span>
+    </div>
+</button>
+
+    <div id="product-modal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" id="modal-backdrop"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-0 text-center sm:items-center sm:p-4">
+                <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-5xl h-[90vh] sm:h-[85vh] flex flex-col" id="modal-content-container">
+                    
+                    <div class="bg-white px-6 py-4 border-b border-gray-200 flex justify-between items-center sticky top-0 z-20">
+                        <div class="flex flex-col">
+                            <span id="modal-linha" class="text-xs font-bold text-suvinil-orange uppercase tracking-wider"></span>
+                            <h3 class="text-2xl font-extrabold text-gray-900" id="modal-title">Nome do Produto</h3>
+                        </div>
+                        <button type="button" id="close-modal-btn" class="rounded-full w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors flex items-center justify-center">
+                            <i class="fa-solid fa-xmark text-xl"></i>
+                        </button>
+                    </div>
+
+                    <div class="custom-scrollbar overflow-y-auto flex-1 p-6 sm:p-8 bg-gray-50" id="modal-body">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="calc-modal" class="fixed inset-0 z-50 hidden" aria-labelledby="calc-modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" id="calc-modal-backdrop"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 w-full max-w-2xl flex flex-col glass">
+                    
+                    <div class="bg-gradient-to-r from-suvinil-orange to-orange-500 px-6 py-5 flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2" id="calc-modal-title">
+                            <i class="fa-solid fa-calculator"></i> Calculadora de Consumo
+                        </h3>
+                        <button type="button" onclick="closeCalcModal()" class="text-white/80 hover:text-white transition-colors">
+                            <i class="fa-solid fa-xmark text-2xl"></i>
+                        </button>
+                    </div>
+
+                    <div class="p-6 bg-white overflow-y-auto custom-scrollbar max-h-[75vh]">
+                        <p class="text-gray-600 mb-6 text-sm">Insira as medidas das paredes que deseja pintar para descobrir a quantidade exata de tinta necessária (baseado no rendimento acabado indicado nos boletins técnicos oficiais).</p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Qual produto você vai usar?</label>
+                                <select id="calc-product" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-suvinil-orange focus:border-suvinil-orange p-2.5 bg-gray-50 text-sm">
+                                    </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Número de Demãos</label>
+                                <select id="calc-coats" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-suvinil-orange focus:border-suvinil-orange p-2.5 bg-gray-50 text-sm">
+                                    <option value="2">2 Demãos (Padrão)</option>
+                                    <option value="3">3 Demãos</option>
+                                </select>
+                                <p class="text-[10px] text-gray-500 mt-1">*O rendimento nos manuais geralmente prevê 2 a 3 demãos (rendimento acabado).</p>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="block text-sm font-semibold text-gray-700">Medidas das Paredes (Metros)</label>
+                                <button onclick="addCalcWall()" class="text-xs text-suvinil-orange font-bold hover:underline flex items-center gap-1">
+                                    <i class="fa-solid fa-plus"></i> Adicionar Parede
+                                </button>
+                            </div>
+                            <div id="calc-walls-container" class="space-y-3">
+                                </div>
+                        </div>
+
+                        <div class="mb-6 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <div class="flex items-center gap-2 mb-2">
+                                <input type="checkbox" id="calc-discount-check" onchange="toggleDiscounts()" class="rounded text-suvinil-orange focus:ring-suvinil-orange">
+                                <label for="calc-discount-check" class="text-sm font-medium text-gray-700">Possui janelas ou portas?</label>
+                            </div>
+                            <div id="calc-discounts-area" class="hidden mt-3">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs text-gray-500 mb-1">Área total de Portas (m²)</label>
+                                        <input type="number" id="calc-doors" min="0" step="0.1" value="0" class="w-full border-gray-300 rounded focus:ring-suvinil-orange p-2 text-sm" placeholder="Ex: 1.6">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs text-gray-500 mb-1">Área total de Janelas (m²)</label>
+                                        <input type="number" id="calc-windows" min="0" step="0.1" value="0" class="w-full border-gray-300 rounded focus:ring-suvinil-orange p-2 text-sm" placeholder="Ex: 2.0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<button onclick="runCalculation()" class="w-full h-[54px] bg-gray-900 hover:bg-black text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg flex justify-center items-center gap-2 text-base active:scale-95">
+    <i class="fa-solid fa-wand-magic-sparkles text-sm"></i>
+    Calcular Agora
+</button>
+
+                        <div id="calc-results" class="hidden mt-6 bg-green-50 border border-green-200 rounded-xl p-5">
+                            <h4 class="text-lg font-bold text-green-800 mb-2 border-b border-green-200 pb-2">Resultado do Cálculo</h4>
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <span class="block text-xs text-green-700 uppercase font-bold tracking-wider">Área Total a Pintar</span>
+                                    <span id="res-area" class="text-2xl font-black text-green-900">0 m²</span>
+                                </div>
+                                <div>
+                                    <span class="block text-xs text-green-700 uppercase font-bold tracking-wider">Rendimento Adotado</span>
+                                    <span id="res-yield" class="text-lg font-bold text-green-800">0 m² / Lata</span>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-lg p-4 shadow-inner border border-green-100">
+                                <span class="block text-sm font-semibold text-gray-700 mb-2">Você precisará aproximadamente de:</span>
+                                <ul id="res-cans-list" class="space-y-2 text-lg font-bold text-suvinil-orange">
+                                    </ul>
+                            </div>
+                            <button id="calc-btn-use-product" onclick="useProductFromCalc()" class="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-lg transition-colors text-sm">
+                                Ver detalhes deste produto no catálogo
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="full-color-modal" class="fixed inset-0 z-50 hidden" aria-labelledby="color-modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="closeFullColorModal()"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4">
+                <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all w-full max-w-6xl h-[90vh] flex flex-col">
+                    <div class="bg-white px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                        <h3 class="text-2xl font-bold text-gray-900"><i class="fa-solid fa-swatchbook text-suvinil-orange mr-2"></i> Simulador de Cores SelfColor</h3>
+                        <button onclick="closeFullColorModal()" class="text-gray-400 hover:text-gray-600">
+                            <i class="fa-solid fa-xmark text-2xl"></i>
+                        </button>
+                    </div>
+                    <div class="p-6 bg-gray-50 flex-1 overflow-y-auto custom-scrollbar">
+                        <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Esta é uma amostra das +1.700 cores disponíveis nas máquinas SelfColor. Visite uma loja para ver o catálogo físico e garantir a fidelidade do tom na sua parede.</p>
+                        
+<!--                         <div class="flex gap-2 justify-center mb-8 flex-wrap">
+                            <button class="px-4 py-1 rounded-full text-sm font-semibold bg-gray-800 text-white">Todas</button>
+                            <button class="px-4 py-1 rounded-full text-sm font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-100">Neutras</button>
+                            <button class="px-4 py-1 rounded-full text-sm font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-100">Quentes</button>
+                            <button class="px-4 py-1 rounded-full text-sm font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-100">Frias</button>
+                            <button class="px-4 py-1 rounded-full text-sm font-semibold bg-white border border-gray-300 text-gray-700 hover:bg-gray-100">Tendência</button>
+                        </div> -->
+
+                        <div id="full-color-grid" class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-8 lg:grid-cols-10 gap-4">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="w-full py-8 bg-slate-950 border-t border-white/5 mt-auto static">
+    <div class="container mx-auto px-8 flex flex-col items-center gap-2">
+        <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 mb-2">
+            <span class="text-white/40 text-[10px] font-bold tracking-widest uppercase">Parceria Técnica</span>
+            <div class="flex items-center gap-3">
+                <span class="text-white text-sm font-bold uppercase tracking-tighter">Casas da Água</span>
+                <div class="w-[1px] h-3 bg-white/20 hidden sm:block"></div>
+                <span class="text-suvinil-orange text-sm font-black italic uppercase">Suvinil</span>
+            </div>
+        </div>
+        
+        <div class="flex flex-col items-center gap-1">
+            <p class="text-white/30 text-[10px] uppercase tracking-widest">
+                &copy; 2026 — Todos os direitos reservados
+            </p>
+            <p class="text-white/50 text-xs font-medium">
+                Desenvolvido por <span class="text-suvinil-orange/80 font-bold italic">Vinicius S.</span>
+            </p>
+        </div>
+    </div>
+</footer>
+
+
+    <script>
+        // Shared Constant Data Texts Extracted from PDFs to save space & ensure accuracy
+        const TEXTS = {
+            coresSelfColor: "São mais de 1.700 cores pra combinar com você e com sua parede. Já sabe qual é a sua?",
+            coresRendeCobre: "São mais de 800 cores pra combinar com você e com sua parede. Já sabe qual é a sua?",
+            airless: [
+                "<strong>PASSO 1 - selecione o tipo de bico mais adequado:</strong> existem diversos tipos de bicos. Alguns são projetados para maior produtividade e outros, para dar o melhor acabamento. Vai uma dica? Consulte o manual do seu equipamento para escolher o tipo de bico mais adequado e confira sempre as recomendações do fabricante do Bico de pulverização.",
+                "<strong>PASSO 2 - escolha a largura do leque do bico de aplicação:</strong> Leques mais abertos representam um aumento da produtividade (m² pintados a cada passada), porem reduzem a espessura da camada de produto aplicado. Leques mais fechados aumentam a camada aplicada. A dimensão da superfície define a abertura do leque também: superfícies maiores (ex: Fachadas) usam leques mais abertos e Superfícies menores (ex: portas, pilares e vigas). Vai uma dica? Sobreponha cada faixa de aplicação até 50% da faixa anterior. Se possível, cruze as demãos em faixas horizontal e vertical para melhor fechamento e acabamento. Mantenha a pistola perpendicular à superfície, a uma distância aproximada de 30 cm.",
+                "<strong>PASSO 3 - escolha a abertura do bico de aplicação mais adequado:</strong> Use bico com abertura de 015-019\". Vai uma dica? Confira sempre as dicas de manutenção e de operação de seu equipamento airless para obter a melhor aplicação.",
+                "<strong>PASSO 4 - prepare o produto para a aplicação:</strong> Homogenize o produto com um misturador motorizado. Faça teste de uniformidade do formato de abertura do leque de pulverização em um pedaço de parede ou em outra superfície. Ajuste a pressão do equipamento conforme o produto a ser aplicado e o formato de abertura do leque desejado. Se necessário, dilua o produto até o limite da diluição indicada para aplicação a rolo de lã, homogeneizando bem o produto com misturador motorizado. Vai uma dica? Filtre seladores, fundos, resinas e tintas de acabamento através de uma tela antes de aplicar isto evita entupimentos dos filtros e do bico da pistola airless, além de proteger o equipamento e prolongar sua vida util. Ao aplicar massas com airless, lembre-se de remover os filtros do equipamento e da pistola. Consulte o manual do fabricante para mais dicas sobre filtros e como evitar entupimentos."
+            ],
+            prepararParedeGeral: [
+                { condicao: "Parede nova: com reboco, argamassa, concreto ou cimento e sem pintura", acao: "Após secar e curar por no mínimo 28 dias, passe a mão sobre a parede. Se ainda restarem grãos ou pó, aplique uma demão de Suvinil Fundo Preparador. Se não sair grãos ou pó, aplique uma demão de Suvinil Selador Acrílico." },
+                { condicao: "Parede pintada: com bolhas, partes soltas ou mal aderidas", acao: "Elimine todas essas imperfeições com raspagem, lixamento, escovação ou hidrojato e aplique uma demão de Suvinil Fundo Preparador. Se houver indícios de presença de umidade, trate-a antes de realizar a pintura." },
+                { condicao: "Parede mofada", acao: "Lave com uma mistura de água e água sanitária (1:1), deixe agir por uma hora, enxague e deixe secar." },
+                { condicao: "Parede com muitas imperfeições e falhas profundas", acao: "Corrija com argamassa e aguarde curar por no mínimo 28 dias." },
+                { condicao: "Telhas de fibrocimento e paredes pintadas com cal ou pinturas muito antigas", acao: "Aplique uma demão de Suvinil Fundo Preparador." }
+            ],
+            gessoComum: { condicao: "Gesso: corrido, forro, sanca ou acartonado", acao: "Deixe secar por 30 dias. Aplique uma demão de Suvinil Gesso & Drywall para garantir a aderência da tinta." },
+            precaucoesGerais: "Se for necessário consultar um médico, tenha em mãos a embalagem ou o rótulo do produto. Mantenha fora do alcance das crianças. Ler atentamente e seguir todas as instruções. Evite inalar as poeiras/fumos/gases/névoas/vapores/aerossóis. Evite a liberação para o meio ambiente. Usar luvas de proteção, vestuário de proteção, proteção ocular e proteção facial. SE ENTRAR EM CONTATO COM OS OLHOS: enxaguar cuidadosamente com água durante vários minutos. Se usar lentes de contato, retire-as, se tal lhe for possível. Continuar a enxaguar. Retire a roupa contaminada. Lave-a antes de usar novamente. Eliminar o conteúdo/recipiente em um ponto de coleta de resíduos especiais ou perigosos. A Ficha com Dados de Segurança pode ser obtida por meio do site www.suvinil.com.br. Emergências médicas (24h): CIATox 0800-0148-110."
+        };
+
+        // Complete Extracted Data from the 7 PDFs
+        const products = [
+            {
+                id: 'fachada-protegida',
+                linha: 'Fachada',
+                name: 'Suvinil Fachada Protegida Emborrachada',
+                slogan: 'A tinta que protege sua parede por 8 anos',
+                acabamento: 'Emborrachada',
+                uso: 'Especialmente indicada primeira pintura e repintura de área externa, sobre superfícies de concreto, bloco de concreto, fibrocimento, texturas, reboco e sobre Suvinil Massa Acrilica.',
+                atributos: ['Proteção contra ações do tempo.', 'Proteção contra mofo, algas e fungos.', 'Película elástica e impermeável, livre de fissuras e infiltrações.'],
+                cores: TEXTS.coresSelfColor,
+                corBg: 'bg-emerald-800',
+                rendimentoResumo: 'Lata (18L) até 85 m²',
+                calcYield: 85, // max area completed per large bucket
+                normas: {
+                    nbr: 'NBR 11702:2021',
+                    tipo: '4.5.16',
+                    funcao: 'Pintar e acompanhar a dilatação de até 0,3 mm, e retração de superfícies de alvenaria em geral.'
+                },
+                desempenho: [
+                    { ensaio: 'Poder de cobertura seca (ABNT NBR 14942)', minimo: '4,0 m²/L', produto: '≥ 4,0 m²/L' },
+                    { ensaio: 'Rendimento acabado (ABNT NBR 14942)', minimo: '70 m²/18L, 14 m²/3,6L e 3,5 m²/0,9L', produto: 'Vide quadro de rendimento' },
+                    { ensaio: 'Poder de cobertura úmida (ABNT NBR 14943)', minimo: '80,0%', produto: '≥ 80,0%' },
+                    { ensaio: 'Resistência à abrasão úmida (ABNT NBR 14940)', minimo: '150 ciclos', produto: '≥ 150 ciclos' },
+                    { ensaio: 'Teor VOC (ABNT NBR 16388)', minimo: 'Máximo 100 g/L', produto: '1-12 g/L' },
+                    { ensaio: 'Resistência a fungos (ABNT NBR 15987)', minimo: 'Critério "resiste"', produto: 'Resiste' },
+                    { ensaio: 'Alongamento (ABNT NBR 16548 e 13321)', minimo: 'Mínimo de 100%', produto: '≥ 100%' },
+                    { ensaio: 'Resistência à tração (ABNT NBR 16548 e 13321)', minimo: 'Mínimo 1,5 MPa', produto: '≥ 1,5 MPa' }
+                ],
+                infoTecnica: {
+                    composicao: 'Água, resina acrílica elastomérica em dispersão aquosa, aditivos, pigmentos isentos de metais pesados, cargas minerais inertes, espessantes, tensoativos, 2-octil-2H-Isotiazol-3-ona (fungicida), diuron (algicida), Mistura de: 5-cloro-2-metil-2H-isotiazol-3-ona e 2-metil-2H-Isotiazol-3-ona (3:1/bactericida); Butilcarbamato de 3-Iodo-2-propinila.',
+                    solidosMassa: '44-55%',
+                    solidosVolume: '30-40%',
+                    densidade: '1,20-1,35 g/cm³',
+                    ph: '8,5-11,5',
+                    validade: '36 meses'
+                },
+                aplicacao: {
+                    diluicao: '10% com água potável',
+                    ferramentas: 'Rolo de lã com pelos médios (22 mm) ou pelos altos (25 mm) e trincha.',
+                    demaos: '3 ou mais (pode variar dependendo da superfície e cor)',
+                    secagem: { toque: '2 horas', entre: '4 horas', final: '12 horas' }
+                },
+                rendimentoEmbalagem: [
+                    { emb: 'Lata (18 L)', valor: 'Branco e Cores até 85 m²' },
+                    { emb: 'Lata (16 L)', valor: 'Bases até 76 m²' },
+                    { emb: 'Galão (3,6 L)', valor: 'Branco e Cores até 17 m²' },
+                    { emb: 'Galão (3,2 L)', valor: 'Bases até 15 m²' }
+                ],
+                preparacaoEspecial: [
+                    { condicao: "Parede com imperfeições leves, ondulações, rugosas ou grosseiras", acao: "Em ambientes externos, nivele com Suvinil Massa Acrílica." },
+                    { condicao: "Trincas dinâmicas (abertura acima de 0,3 mm)", acao: "Abrir as trincas em V (10 x 10 mm). Aplicar Suvinil Fundo Preparador. Preencher a abertura com aplicações de Suvinil Selatrinca com o auxílio de uma espátula e intervalos entre as aplicações de 24 horas. Cobrir com Tela de Poliéster, fixando-a com Suvinil Fachada Protegida Emborrachada sem diluição." }
+                ],
+                passoAPasso: [
+                    { t: "1. Planeje-se", d: "Programar-se para realizar a pintura é a melhor farma de evitar danas pela chuva. Certifique-se do clima e antecipe-se para realizá-la no período da manha." },
+                    { t: "2. Prepare a fachada", d: "Limpe a fachada e consulte a tabela se houver alguma imperfeição." },
+                    { t: "3. Conserte imperfeições", d: "Se houver buracos ou rachaduras, use massa acrílica. Deixe secar e lixe para ficar liso." },
+                    { t: "4. Proteja as áreas", d: "Use fita adesiva para cobrir rodapés, molduras e interruptores." },
+                    { t: "5. Misture a tinta", d: "Mexa bem a tinta com algo que tenha as pontas quadradas (uma boa dica é usar régua)." },
+                    { t: "6. Comece a pintar", d: "Use um pincel para pintar primeiro as bordas da parede ('recorte'). Em seguida use um rolo de pintura fazendo movimentos em W." },
+                    { t: "7. Dê as demais demãos", d: "Depois que a primeira camada secar, você pode aplicar as demais demãos. Fique atento ao intervalo de tempo." },
+                    { t: "8. Remova a fita", d: "Tire a fita adesiva com cuidado antes que a tinta seque completamente." },
+                    { t: "9. Deixe secar e fique atento ao clima", d: "Deixe a parede secar bem. Se choveu, pingos de água podem manchar a parede até 30 dias após a pintura. Se acontecer, lave com água limpa imediatamente (não interfere na cor e durabilidade)." }
+                ],
+                observacoes: "TERMO DE GARANTIA: A Suvinil garante proteção contra fissuras até 8 anos dentro das condições de uso não industrial. A garantia está condicionada à reaplicação a cada 5 anos de uma demão da mesma cor ou 2-3 demãos se houver troca de cor. Produtos elastoméricos são sensíveis a objetos pontiagudos ou cortantes, e podem reter mais sujeiras. A cada 24-30 meses, aplique uma mistura de água e água sanitária (1:1) por 1 hora e lave com água."
+            },
+            {
+                id: 'fosco-sempre-limpo',
+                linha: 'Inova',
+                name: 'Suvinil Fosco Sempre Limpo',
+                slogan: 'Com tecnologias exclusivas, oferece inovação e performance que vão além da durabilidade.',
+                acabamento: 'Fosco',
+                uso: 'Indicada para pintura de superfícies externas e internas de reboco, massa acrílica, texturas, concreto, fibrocimento e superfícies internas de massa corrida, drywall e gesso.',
+                atributos: ['Acabamento fosco, resistente a marcas de atrito e que limpa sem deixar manchas.', 'Pintura lisa e uniforme.', 'Resistência à limpeza e Disfarça as imperfeições.'],
+                cores: TEXTS.coresSelfColor,
+                corBg: 'bg-blue-600',
+                rendimentoResumo: 'Lata (18L) até 120 m²',
+                calcYield: 120,
+                normas: {
+                    nbr: 'NBR 11702:2021 e NBR 15079',
+                    tipo: '4.5.12',
+                    funcao: 'Pintar superfícies de alvenaria em geral. Permite fácil limpeza e conserva o aspecto e a integridade do filme da tinta.'
+                },
+                desempenho: [
+                    { ensaio: 'Poder de cobertura seca (ABNT NBR 14942)', minimo: '6,0 m²/L', produto: '≥ 6,0 m²/L' },
+                    { ensaio: 'Rendimento acabado (ABNT NBR 14942)', minimo: '110 m²/18L, 22 m²/3,6L e 5,5 m²/0,9L', produto: 'Vide quadro de rendimento' },
+                    { ensaio: 'Poder de cobertura úmida (ABNT NBR 14943)', minimo: '90,0%', produto: '≥ 90,0%' },
+                    { ensaio: 'Resistência à abrasão úmida (ABNT NBR 14940)', minimo: '200 ciclos', produto: '> 200 ciclos' },
+                    { ensaio: 'Teor VOC (ABNT NBR 16388)', minimo: 'Máximo 100 g/L', produto: '8-17 g/L' },
+                    { ensaio: 'Resistência a fungos (ABNT NBR 15987)', minimo: 'Critério "resiste"', produto: 'Resiste' }
+                ],
+                infoTecnica: {
+                    composicao: 'Água, resina à base de dispersão aquosa de copolímero estireno acrílico, aditivos, pigmentos isentos de metais pesados, cargas minerais inertes, glicóis, espessantes e tensoativos, diuron (algicida), Mistura de: 5-cloro-2-metil-2H-isotiazol-3-ona e 2-metil-2H-isotiazol-3-ona (3:1/bactericida), 2-octil-2H-isotiazol-3-ona (Fungicida).',
+                    solidosMassa: '40-55%',
+                    solidosVolume: '22-32%',
+                    densidade: '1,2-1,5 g/cm³',
+                    ph: '8,0-10,0',
+                    validade: '36 meses'
+                },
+                aplicacao: {
+                    diluicao: '20% com água potável',
+                    ferramentas: 'Repintura/Reboco: Rolo de lã pelos médios (22mm) ou trincha. Primeira pintura (massa/gesso): Rolo de lã pelos curtos (9mm) ou trincha.',
+                    demaos: '2 a 3 (pode variar dependendo da superfície)',
+                    secagem: { toque: '2 horas', entre: '4 horas', final: '12 horas' }
+                },
+                rendimentoEmbalagem: [
+                    { emb: 'Lata (18 L) / (16 L)', valor: 'Branco/Cores até 120 m² | Bases até 107 m²' },
+                    { emb: 'Galão (3,6 L) / (3,2 L)', valor: 'Branco/Cores até 24 m² | Bases até 21 m²' },
+                    { emb: 'Galão (0,8 L)', valor: 'Bases até 5 m²' }
+                ],
+                preparacaoEspecial: [
+                    { condicao: "Parede com imperfeições leves, ondulações, rugosas ou grosseiras", acao: "Em ambientes que recebam umidade, nivele com Suvinil Massa Acrílica. Em ambientes internos secos, use Suvinil Massa Corrida." },
+                    TEXTS.gessoComum
+                ],
+                passoAPasso: [
+                    { t: "1. Prepare a área", d: "Tire móveis e objetos. Cubra o chão com papelão ou jornal." },
+                    { t: "2. Limpe a parede", d: "Lixe a parede e passe um pano úmido para tirar o excesso de pó." },
+                    { t: "3. Conserte imperfeições", d: "Use massa corrida (ambientes secos) ou acrílica (ambientes com umidade). Deixe secar e lixe." },
+                    { t: "4. Proteja as áreas", d: "Use fita adesiva para cobrir rodapés, molduras e interruptores." },
+                    { t: "5. Misture a tinta", d: "Mexa bem a tinta com algo de pontas quadradas." },
+                    { t: "6. Comece a pintar", d: "Recorte as bordas com pincel, depois use rolo fazendo movimentos em W." },
+                    { t: "7. Dê as demais demãos", d: "Respeite o intervalo de tempo de 4 horas." },
+                    { t: "8. Remova a fita", d: "Tire a fita adesiva antes que a tinta seque completamente." },
+                    { t: "9. Deixe secar e coloque tudo de volta", d: "Deixe secar bem." }
+                ],
+                observacoes: "Sem cheiro em até 4 horas após aplicação. Após a pintura, deixe secar por 14 dias antes de limpar. Use um pano ou esponja macia com detergente neutro. Para sujeiras como batom e molhos, utilize saponáceo líquido e enxágue. Pingos de água da chuva até 30 dias podem manchar, basta lavar com água."
+            },
+            {
+                id: 'toque-fosco-completo',
+                linha: 'Toque',
+                name: 'Suvinil Toque Fosco Completo',
+                slogan: 'Acabamento fosco impecável, super lisa e uniforme.',
+                acabamento: 'Fosco',
+                uso: 'Indicado para pintura de superfícies externas e internas de reboco, massa acrílica, texturas, concreto, fibrocimento e internas de massa corrida e gesso devidamente preparadas.',
+                atributos: ['Acabamento fosco impecável', 'Pintura lisa e uniforme', 'Resistência à limpeza e Disfarça imperfeições'],
+                cores: TEXTS.coresSelfColor,
+                corBg: 'bg-purple-800',
+                rendimentoResumo: 'Balde (20L) até 167 m²',
+                calcYield: 150, // 18L reference to standardize
+                normas: { nbr: 'NBR 11702:2021', tipo: '4.5.3', funcao: 'Pintar superfícies de alvenaria em geral em áreas internas e/ou externas.' },
+                desempenho: [
+                    { ensaio: 'Poder de cobertura seca (ABNT NBR 14942)', minimo: '6,0 m²/L', produto: '≥ 6 m²/L' },
+                    { ensaio: 'Rendimento acabado (ABNT NBR 14942)', minimo: '110 m²/18L, 22 m²/3,6L e 5,5 m²/0,9L', produto: 'Vide quadro' },
+                    { ensaio: 'Poder de cobertura úmida (ABNT NBR 14943)', minimo: '90,0%', produto: '≥ 90,0%' },
+                    { ensaio: 'Resistência à abrasão úmida (ABNT NBR 14940)', minimo: '100 ciclos', produto: '≥ 100 ciclos' },
+                    { ensaio: 'Teor VOC (ABNT NBR 16388)', minimo: 'Máximo 100 g/L', produto: '3-20 g/L' },
+                    { ensaio: 'Resistência a fungos (ABNT NBR 15987)', minimo: 'Critério "resiste"', produto: 'Resiste' },
+                    { ensaio: 'Brilho (ABNT NBR 15299)', minimo: '≤ 8 UB a 85°', produto: '≤ 8 UB' }
+                ],
+                infoTecnica: {
+                    composicao: 'Água, resina à base de dispersão aquosa de copolímero estireno acrílico, aditivos, pigmentos isentos de metais pesados, cargas minerais inertes, glicóis, espessantes e tensoativos, diuron (algicida), 2-octil-2H-isotiazol-3-ona (fungicida), mistura de: 5-cloro-2-metil-2H-isotiazol-3-ona e 2-metil-2H-isotiazol-3-ona (bactericida/3:1).',
+                    solidosMassa: '40 a 54%',
+                    solidosVolume: '26 a 35%',
+                    densidade: '1,1-1,6 g/cm³',
+                    ph: '8,5-11,5',
+                    validade: '36 meses'
+                },
+                aplicacao: {
+                    diluicao: '20% com água potável',
+                    ferramentas: 'Repintura/Reboco: Rolo de lã pelos médios (22mm) ou trincha. Primeira pintura (massa/gesso): Rolo de lã curtos (9mm) ou trincha.',
+                    demaos: '2 a 3',
+                    secagem: { toque: '2 horas', entre: '4 horas', final: '12 horas' }
+                },
+                rendimentoEmbalagem: [
+                    { emb: 'Balde (20 L)', valor: 'Branco/Cores até 167 m²' },
+                    { emb: 'Lata (18 L)', valor: 'Branco/Cores até 150 m²' },
+                    { emb: 'Lata (16 L)', valor: 'Bases até 133 m²' },
+                    { emb: 'Galão (3,6 L)', valor: 'Branco/Cores até 30 m²' },
+                    { emb: 'Galão (3,2 L)', valor: 'Bases até 27 m²' },
+                    { emb: 'Galão (0,8 L)', valor: 'Bases até 5,5 m²' }
+                ],
+                preparacaoEspecial: [
+                    { condicao: "Parede com imperfeições leves, ondulações, rugosas ou grosseiras", acao: "Em ambientes que recebam umidade, nivele com Suvinil Massa Acrílica. Em ambientes secos, use Suvinil Massa Corrida." },
+                    TEXTS.gessoComum
+                ],
+                passoAPasso: [
+                    { t: "1. Planeje-se", d: "Tire móveis e objetos. Cubra o chão com papelão." },
+                    { t: "2. Limpe a parede", d: "Lixe e passe pano úmido." },
+                    { t: "3. Conserte imperfeições", d: "Massa corrida (secos) ou acrílica (umidade)." },
+                    { t: "4. Proteja as áreas", d: "Fita adesiva em rodapés e interruptores." },
+                    { t: "5. Misture a tinta", d: "Mexa bem." },
+                    { t: "6. Comece a pintar", d: "Recorte com pincel, pinte em W com rolo." },
+                    { t: "7. Dê as demais demãos", d: "Respeite 4h entre demãos." },
+                    { t: "8. Remova a fita", d: "Antes de secar." },
+                    { t: "9. Deixe secar e coloque tudo de volta", d: "Admire o resultado final." }
+                ],
+                observacoes: "Não deixa cheiro em até 4 horas após a aplicação. Deixe a pintura secar por 2 semanas antes de limpar. Com o atrito, pode haver diferença de brilho e cores mais intensas podem esbranquiçar."
+            },
+            {
+                id: 'toque-brilho',
+                linha: 'Toque',
+                name: 'Suvinil Toque Brilho',
+                slogan: 'Acabamento semibrilho, mais intensidade nas cores.',
+                acabamento: 'Semibrilho',
+                uso: 'Indicado para pintura de superfícies externas e internas de reboco, massa acrílica, texturas, concreto, fibrocimento e superfícies internas não molháveis de massa corrida e gesso.',
+                atributos: ['Acabamento semibrilho, mais intensidade nas cores.', 'Pintura lisa e uniforme.', 'Resistência à limpeza e disfarça imperfeições.'],
+                cores: TEXTS.coresSelfColor,
+                corBg: 'bg-teal-800',
+                rendimentoResumo: 'Lata (18L) até 110 m²',
+                calcYield: 110,
+                normas: { nbr: 'NBR 11702:2021', tipo: '4.5.10', funcao: 'Pintar superfícies de alvenaria em geral.' },
+                desempenho: [
+                    { ensaio: 'Poder de cobertura seca (ABNT NBR 14942)', minimo: '5,0 m²/L', produto: '≥ 5,0 m²/L' },
+                    { ensaio: 'Rendimento acabado (ABNT NBR 14942)', minimo: '90 m²/18L', produto: 'Vide quadro' },
+                    { ensaio: 'Poder de cobertura úmida (ABNT NBR 14943)', minimo: '90,0%', produto: '≥ 90%' },
+                    { ensaio: 'Resistência à abrasão úmida (ABNT NBR 14940)', minimo: '150 ciclos', produto: '≥ 150 ciclos' },
+                    { ensaio: 'Teor VOC (ABNT NBR 16388)', minimo: 'Máximo 100 g/L', produto: '15-19 g/L' },
+                    { ensaio: 'Resistência a fungos (ABNT NBR 15987)', minimo: 'Critério "resiste"', produto: 'Resiste' },
+                    { ensaio: 'Brilho (ABNT NBR 15299)', minimo: '18 ≤ UB < 40 a 60°', produto: '18 ≤ UB < 40 a 60°' }
+                ],
+                infoTecnica: {
+                    composicao: 'Água, resina à base de dispersão aquosa de copolímero estireno-acrílico, aditivos, pigmentos isentos de metais pesados, cargas minerais inertes, glicóis, espessantes, tensoativos, mistura de: 5-cloro-2-metil-2H-isotiazol-3-ona e 2-metil-2H-isotiazol-3-ona (3:1/bactericida) e 2-octil-2H-isotiazol-3-ona (fungicida), bronopol, diuron (algicida).',
+                    solidosMassa: '30-48%',
+                    solidosVolume: '21-34%',
+                    densidade: '1,10 - 1,30 g/cm³',
+                    ph: '8,0-10,0',
+                    validade: '36 meses'
+                },
+                aplicacao: {
+                    diluicao: '20% com água potável',
+                    ferramentas: 'Rolo de lã pelos médios (22mm) para reboco. Rolo de lã curtos (9mm) para massa/gesso. Ou trincha.',
+                    demaos: '2 a 3',
+                    secagem: { toque: '2 horas', entre: '4 horas', final: '12 horas' }
+                },
+                rendimentoEmbalagem: [
+                    { emb: 'Lata (18 L)', valor: 'Branco/Cores até 110 m²' },
+                    { emb: 'Lata (16 L)', valor: 'Bases até 98 m²' },
+                    { emb: 'Galão (3,6 L)', valor: 'Branco/Cores até 22 m²' },
+                    { emb: 'Galão (3,2 L)', valor: 'Bases até 20 m²' },
+                    { emb: 'Galão (0,8 L)', valor: 'Bases até 5 m²' }
+                ],
+                preparacaoEspecial: [
+                    { condicao: "Parede com imperfeições leves, ondulações, rugosas ou grosseiras", acao: "Em ambientes que recebam umidade, nivele com Suvinil Massa Acrílica. Em ambientes secos, use Suvinil Massa Corrida." },
+                    TEXTS.gessoComum
+                ],
+                passoAPasso: [
+                    { t: "1. Prepare a área", d: "Tire móveis e objetos. Cubra o chão." },
+                    { t: "2. Limpe a parede", d: "Lixe e passe pano úmido." },
+                    { t: "3. Conserte imperfeições", d: "Massa corrida ou acrílica." },
+                    { t: "4. Proteja as áreas", d: "Fita adesiva." },
+                    { t: "5. Misture a tinta", d: "Mexa bem com régua." },
+                    { t: "6. Comece a pintar", d: "Recorte as bordas, use rolo em W." },
+                    { t: "7. Dê as demais demãos", d: "Intervalo de 4h." },
+                    { t: "8. Remova a fita", d: "Antes de secar totalmente." },
+                    { t: "9. Deixe secar", d: "Coloque móveis de volta e admire." }
+                ],
+                observacoes: "Não deixa cheiro em até 4 horas após aplicação."
+            },
+            {
+                id: 'toque-fosco-select',
+                linha: 'Toque',
+                name: 'Suvinil Toque Fosco Select',
+                slogan: 'Acabamento fosco fácil de aplicar.',
+                acabamento: 'Fosco',
+                uso: 'Indicado para superfícies de concreto, blocos de concreto, fibrocimento, sobre massas corrida e acrílica, Drywall ou gesso, repinturas de paredes em geral, sejam de ambientes internos e/ou externos.',
+                atributos: ['Acabamento fosco fácil de aplicar', 'Pintura lisa e uniforme', 'Resistência à limpeza e Disfarça imperfeições'],
+                cores: TEXTS.coresSelfColor,
+                corBg: 'bg-rose-900',
+                rendimentoResumo: 'Lata (18L) até 130 m²',
+                calcYield: 130,
+                normas: { nbr: 'NBR 11702:2021', tipo: '4.5.3', funcao: 'Pintar superfícies de alvenaria em geral.' },
+                desempenho: [
+                    { ensaio: 'Poder de cobertura seca (ABNT NBR 14942)', minimo: '6,0 m²/L', produto: '≥ 7,1 m²/L' },
+                    { ensaio: 'Rendimento acabado (ABNT NBR 14942)', minimo: '110 m²/18L', produto: 'Vide quadro' },
+                    { ensaio: 'Poder de cobertura úmida (ABNT NBR 14943)', minimo: '90,0%', produto: '≥ 90% R/C' },
+                    { ensaio: 'Resistência à abrasão úmida (ABNT NBR 14940)', minimo: '100 ciclos', produto: '≥ 105 ciclos' },
+                    { ensaio: 'Teor VOC (ABNT NBR 16388)', minimo: 'Máximo 100 g/L', produto: '11-18 g/L' },
+                    { ensaio: 'Resistência a fungos (ABNT NBR 15987)', minimo: 'Critério "resiste"', produto: 'Resiste' },
+                    { ensaio: 'Brilho (ABNT NBR 15299)', minimo: '≤ 8 UB a 85°', produto: '< 7,5 UB' }
+                ],
+                infoTecnica: {
+                    composicao: 'Água, resina à base de dispersão aquosa de copolímero estireno-acrílico e aditivos, pigmentos isentos de metais pesados, cargas minerais inertes, glicóis, espessantes, tensoativos, diuron (algicida), mistura de: 5-cloro-2-metil-2H-isotiazol-3-ona e 2-metil-2H-isotiazol-3-ona (3:1/bactericida), 2-octil-2H-isotiazol-3-ona (fungicida).',
+                    solidosMassa: '35-47%',
+                    solidosVolume: '22-30%',
+                    densidade: '1,20-1,40 g/cm³',
+                    ph: '9,5-11,5',
+                    validade: '36 meses'
+                },
+                aplicacao: {
+                    diluicao: '30% com água potável',
+                    ferramentas: 'Rolo de lã com pelos médios, pelos curtos ou trincha.',
+                    demaos: '2 a 3',
+                    secagem: { toque: '2 horas', entre: '4 horas', final: '12 horas' }
+                },
+                rendimentoEmbalagem: [
+                    { emb: 'Lata (18 L)', valor: 'Branco e Cores até 130 m²' },
+                    { emb: 'Lata (16 L)', valor: 'Bases até 115 m²' },
+                    { emb: 'Galão (3,6 L)', valor: 'Branco e Cores até 26 m²' },
+                    { emb: 'Galão (3,2 L)', valor: 'Bases até 24 m²' },
+                    { emb: 'Galão (0,9 L)', valor: 'Branco e Cores até 6,5 m²' },
+                    { emb: 'Galão (0,8 L)', valor: 'Bases até 6 m²' }
+                ],
+                preparacaoEspecial: [
+                    { condicao: "Parede com imperfeições leves...", acao: "Em ambientes que recebam umidade, nivele com Suvinil Massa Acrílica. Em ambientes secos, use Suvinil Massa Corrida." },
+                    TEXTS.gessoComum
+                ],
+                passoAPasso: [
+                    { t: "1. Prepare a área", d: "Tire móveis e cubra o chão." }, { t: "2. Limpe", d: "Lixe e passe pano úmido." }, { t: "3. Conserte", d: "Massa corrida/acrílica." }, { t: "4. Proteja", d: "Fita adesiva." }, { t: "5. Misture", d: "Mexa bem." }, { t: "6. Pinte", d: "Recorte bordas, rolo em W." }, { t: "7. Demãos", d: "4h de intervalo." }, { t: "8. Remova", d: "Fita." }, { t: "9. Seque", d: "Deixe secar bem." }
+                ],
+                observacoes: "Sem cheiro em 4 horas. Deixe secar por 2 semanas antes de limpar. Com o atrito, cores mais intensas e acabamentos foscos podem esbranquiçar. Para cores mais intensas (galãozinho no leque), recomendamos 2 demãos de Fundo Específico para Cores Especiais. Você ainda pode misturar tons adicionando um frasco de 50ml de Suvinil Corante em cada 3,6L."
+            },
+            {
+                id: 'rende-cobre-muito',
+                linha: 'Standard',
+                name: 'Suvinil Rende e Cobre Muito',
+                slogan: 'A tinta que te ajuda na hora da pintura.',
+                acabamento: 'Fosco',
+                uso: 'Indicada para pinturas de superfícies de ambientes externos e internos de reboco, massa acrílica, massa corrida, texturas, concreto, fibrocimento e gesso.',
+                atributos: ['Pintura lisa e uniforme.', 'Resistência à limpeza.', 'Disfarça as imperfeições.'],
+                cores: TEXTS.coresRendeCobre,
+                corBg: 'bg-orange-600',
+                rendimentoResumo: 'Balde (20L) até 189 m²',
+                calcYield: 170, // using 18L standard to be consistent: 170m2
+                normas: { nbr: 'NBR 11702:2021', tipo: '4.5.2', funcao: 'Pintar superfícies de alvenaria em geral.' },
+                desempenho: [
+                    { ensaio: 'Poder de cobertura seca (ABNT NBR 14942)', minimo: '5,0 m²/L', produto: '≥ 9 m²/L' },
+                    { ensaio: 'Rendimento acabado (ABNT NBR 14942)', minimo: '90 m²/18L', produto: 'Vide quadro' },
+                    { ensaio: 'Poder de cobertura úmida (ABNT NBR 14943)', minimo: '85,0%', produto: '≥ 85%' },
+                    { ensaio: 'Resistência à abrasão úmida (ABNT NBR 14940)', minimo: '40 ciclos', produto: '≥ 40 ciclos' },
+                    { ensaio: 'Teor VOC (ABNT NBR 16388)', minimo: 'Máximo 100 g/L', produto: '13-33 g/L' },
+                    { ensaio: 'Resistência a fungos (ABNT NBR 15987)', minimo: 'Critério "resiste"', produto: 'Resiste' },
+                    { ensaio: 'Brilho (ABNT NBR 15299)', minimo: '≤ 8 UB a 85°', produto: '≤ 8 UB' }
+                ],
+                infoTecnica: {
+                    composicao: 'Água, resina à base de dispersão aquosa de copolímero estireno-acrílico, aditivos, pigmentos isentos de metais pesados, cargas minerais, glicóis, espessantes, tensoativos, Mistura de: 5-cloro-2-metil-2H-isotiazol-3-ona e 2-metil-2H-isotiazol-3-ona (3:1/bactericida), 2-octil-2H-isotiazol-3-ona (fungicida), ácido isobutírico, monoéster com 2,2,4-trimetilpentano-1,3-diol, Bentonita, bronopol.',
+                    solidosMassa: '39-57%',
+                    solidosVolume: '22-32%',
+                    densidade: '1,20-1,50 g/cm³',
+                    ph: '8,0-11,0',
+                    validade: '36 meses'
+                },
+                aplicacao: {
+                    diluicao: 'Até 50% com água potável',
+                    ferramentas: 'Rolo de lã pelos médios (22mm), pelos curtos (9mm) ou trincha.',
+                    demaos: '2 a 3',
+                    secagem: { toque: '2 horas', entre: '4 horas', final: '12 horas' }
+                },
+                rendimentoEmbalagem: [
+                    { emb: 'Balde (20 L)', valor: 'Branco e Cores até 189 m²' },
+                    { emb: 'Lata (18 L)', valor: 'Branco e Cores até 170 m²' },
+                    { emb: 'Lata (16 L)', valor: 'Bases até 150 m²' },
+                    { emb: 'Balde (15 L)', valor: 'Branco até 142 m²' },
+                    { emb: 'Galão (3,6 L)', valor: 'Branco e Cores até 34 m²' },
+                    { emb: 'Galão (3,2 L)', valor: 'Bases até 30 m²' },
+                    { emb: 'Galão (0,9 L)', valor: 'Branco e Cores até 8,5 m²' }
+                ],
+                preparacaoEspecial: [
+                    { condicao: "Parede com imperfeições leves...", acao: "Em ambientes que recebam umidade, nivele com Suvinil Massa Acrílica. Em ambientes secos, use Suvinil Massa Corrida." },
+                    TEXTS.gessoComum
+                ],
+                passoAPasso: [
+                    { t: "1. Prepare a área", d: "Tire móveis, cubra o chão." }, { t: "2. Limpe a parede", d: "Lixe e limpe o pó." }, { t: "3. Conserte", d: "Massa corrida ou acrílica." }, { t: "4. Proteja", d: "Fita." }, { t: "5. Misture", d: "Mexa bem." }, { t: "6. Pinte", d: "Recorte bordas, depois W." }, { t: "7. Demãos", d: "4h de intervalo." }, { t: "8. Remova a fita", d: "Tire com cuidado." }, { t: "9. Deixe secar", d: "Admire o resultado." }
+                ],
+                observacoes: "Não deixa cheiro em até 4 horas após a aplicação. Tinta que rende muito com até 50% de diluição."
+            },
+            {
+                id: 'toque-seda',
+                linha: 'Toque',
+                name: 'Suvinil Toque Seda',
+                slogan: 'Acabamento acetinado, sofisticado e fácil de limpar.',
+                acabamento: 'Acetinado (Seda)',
+                uso: 'Indicada para pintura de superfícies externas e internas de reboco, massa acrílica, texturas, concreto, fibrocimento e superfícies internas de massa corrida e gesso.',
+                atributos: ['Acabamento acetinado, sofisticado e fácil de limpar.', 'Pintura lisa e uniforme.', 'Resistência à limpeza e Disfarça imperfeições.'],
+                cores: TEXTS.coresSelfColor,
+                corBg: 'bg-cyan-800',
+                rendimentoResumo: 'Balde (20L) até 128 m²',
+                calcYield: 115, // 18L to standardize calc
+                normas: { nbr: 'NBR 11702:2021', tipo: '4.5.7', funcao: 'Pintar superfícies de alvenaria em geral.' },
+                desempenho: [
+                    { ensaio: 'Poder de cobertura seca (ABNT NBR 14942)', minimo: '5,0 m²/L', produto: '≥ 5,0 m²/L' },
+                    { ensaio: 'Rendimento acabado (ABNT NBR 14942)', minimo: '90 m²/18L', produto: 'Vide quadro' },
+                    { ensaio: 'Poder de cobertura úmida (ABNT NBR 14943)', minimo: '90,0%', produto: '≥ 92%' },
+                    { ensaio: 'Resistência à abrasão úmida (ABNT NBR 14940)', minimo: '150 ciclos', produto: '≥ 150 ciclos' },
+                    { ensaio: 'Teor VOC (ABNT NBR 16388)', minimo: 'Máximo 100 g/L', produto: '11-15 g/L' },
+                    { ensaio: 'Resistência a fungos (ABNT NBR 15987)', minimo: 'Critério "resiste"', produto: 'Resiste' },
+                    { ensaio: 'Brilho (ABNT NBR 15299)', minimo: '11 ≤ UB ≤ 18 a 60°', produto: '11 ≤ UB ≤ 18 a 60°' }
+                ],
+                infoTecnica: {
+                    composicao: 'Água, resina à base de dispersão aquosa de copolímeros estireno-acrílico, aditivos, pigmentos isentos de metais pesados, cargas minerais, glicóis, espessantes, tensoativos, diuron (algicida), mistura de: 5-cloro-2-metil-2H-isotiazol-3-ona e 2-metil-2H-isotiazol-3-ona (3:1/bactericida) e 2-octil-2H-isotiazol-3-ona (fungicida).',
+                    solidosMassa: '29-48%',
+                    solidosVolume: '20-33%',
+                    densidade: '1,10-1,40 g/cm³',
+                    ph: '8,0-10,0',
+                    validade: '36 meses'
+                },
+                aplicacao: {
+                    diluicao: '20% com água potável',
+                    ferramentas: 'Rolo de lã pelos médios (22mm), curtos (9mm) ou trincha.',
+                    demaos: '2 a 3',
+                    secagem: { toque: '2 horas', entre: '4 horas', final: '12 horas' }
+                },
+                rendimentoEmbalagem: [
+                    { emb: 'Balde (20 L)', valor: 'Branco/Cores até 128 m²' },
+                    { emb: 'Lata (18 L)', valor: 'Branco/Cores até 115 m²' },
+                    { emb: 'Lata (16 L)', valor: 'Bases até 102 m²' },
+                    { emb: 'Galão (3,6 L)', valor: 'Branco/Cores até 22 m²' },
+                    { emb: 'Galão (3,2 L)', valor: 'Bases até 20 m²' },
+                    { emb: 'Galão (0,8 L)', valor: 'Bases até 5 m²' }
+                ],
+                preparacaoEspecial: [
+                    { condicao: "Parede com imperfeições...", acao: "Massa Acrílica (com umidade) ou Massa Corrida (seco)." },
+                    TEXTS.gessoComum
+                ],
+                passoAPasso: [
+                    { t: "1. Prepare a área", d: "Tire móveis, cubra o chão." }, { t: "2. Limpe a parede", d: "Lixe e limpe." }, { t: "3. Conserte", d: "Massa." }, { t: "4. Proteja", d: "Fita." }, { t: "5. Misture", d: "Régua." }, { t: "6. Pinte", d: "Bordas, depois rolo W." }, { t: "7. Demãos", d: "4h." }, { t: "8. Remova a fita", d: "Antes de secar totalmente." }, { t: "9. Secar", d: "Pronto." }
+                ],
+                observacoes: "Não deixa cheiro em até 4 horas. O rendimento da ABNT NBR 14942 é similar à repintura sobre tinta acetinada ou semibrilho."
+            }
+        ];
+
+        // UI Logic (Originals)
+        const grid = document.getElementById('product-grid');
+        const searchInput = document.getElementById('global-search');
+        const filterLinha = document.getElementById('filter-linha');
+        const filterAcabamento = document.getElementById('filter-acabamento');
+        const resultCount = document.getElementById('result-count');
+        
+        const modal = document.getElementById('product-modal');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modalBody = document.getElementById('modal-body');
+
+        function renderProducts(list) {
+            grid.innerHTML = '';
+            resultCount.textContent = `Exibindo ${list.length} produto${list.length !== 1 ? 's' : ''}`;
+            
+            if (list.length === 0) {
+                grid.innerHTML = '<div class="col-span-full text-center py-12 text-gray-500">Nenhum produto encontrado com estes filtros.</div>';
+                return;
+            }
+
+            list.forEach(prod => {
+                const card = document.createElement('article');
+                card.className = 'bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col product-card cursor-pointer';
+                card.onclick = () => openModal(prod.id);
+                
+                card.innerHTML = `
+                    <div class="${prod.corBg} h-48 relative flex items-center justify-center p-6 text-white text-center shadow-inner">
+                        <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold border border-white/30">
+                            ${prod.linha}
+                        </div>
+                        <h3 class="text-2xl font-black uppercase tracking-tight leading-none drop-shadow-md">${prod.name.replace('Suvinil ', '')}</h3>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h4 class="text-xl font-bold text-gray-900 mb-1">${prod.name}</h4>
+                        <p class="text-sm text-suvinil-orange font-semibold mb-3">${prod.acabamento}</p>
+                        <p class="text-sm text-gray-600 mb-4 line-clamp-2 italic">"${prod.slogan}"</p>
+                        
+                        <div class="space-y-2 mb-6 flex-1">
+                            ${prod.atributos.slice(0,3).map(attr => `
+                                <div class="flex items-start gap-2 text-xs text-gray-600">
+                                    <i class="fa-solid fa-check text-green-500 mt-0.5"></i>
+                                    <span>${attr}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div class="pt-4 border-t border-gray-100 flex items-center justify-between mt-auto">
+                            <div class="flex flex-col">
+                                <span class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Rendimento Máx.</span>
+                                <span class="text-sm font-bold text-gray-800">${prod.rendimentoResumo}</span>
+                            </div>
+                            <button class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-suvinil-orange transition-colors">
+                                Detalhes
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function buildTableRows(dataArray, labelKey, valueKey) {
+            return dataArray.map(item => `
+                <tr>
+                    <td class="font-medium text-gray-700">${item[labelKey]}</td>
+                    <td class="text-gray-600">${item[valueKey]}</td>
+                </tr>
+            `).join('');
+        }
+
+        function openModal(id) {
+            const prod = products.find(p => p.id === id);
+            if (!prod) return;
+
+            document.getElementById('modal-linha').textContent = `Linha ${prod.linha} • ${prod.acabamento}`;
+            document.getElementById('modal-title').textContent = prod.name;
+            
+            let html = `
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-6">
+                    <p class="text-xl text-gray-800 font-medium italic mb-4">"${prod.slogan}"</p>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 text-sm text-gray-700 mb-4">
+                        <strong class="text-gray-900 block mb-1">Indicação de Uso:</strong>
+                        ${prod.uso}
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <strong class="text-xs uppercase text-gray-500 tracking-wider block mb-2">Atributos Principais</strong>
+                            <ul class="space-y-1">
+                                ${prod.atributos.map(a => `<li class="text-sm text-gray-700 flex items-start gap-2"><i class="fa-solid fa-star text-suvinil-orange text-xs mt-1"></i> ${a}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                            <strong class="text-xs uppercase text-blue-800 tracking-wider block mb-1">Cores Disponíveis</strong>
+                            <p class="text-sm text-blue-900">${prod.cores}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                        <h4 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4"><i class="fa-solid fa-paint-roller text-suvinil-orange mr-2"></i>Como Pintar</h4>
+                        <div class="space-y-3">
+                            <div><strong class="text-sm text-gray-900">Diluição:</strong> <span class="text-sm text-gray-600">${prod.aplicacao.diluicao}</span></div>
+                            <div><strong class="text-sm text-gray-900">Ferramentas:</strong> <span class="text-sm text-gray-600">${prod.aplicacao.ferramentas}</span></div>
+                            <div><strong class="text-sm text-gray-900">Demãos:</strong> <span class="text-sm text-gray-600">${prod.aplicacao.demaos}</span></div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                        <h4 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4"><i class="fa-solid fa-clock text-suvinil-orange mr-2"></i>Secagem</h4>
+                        <div class="grid grid-cols-3 gap-2 text-center">
+                            <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                <span class="block text-xs text-gray-500 font-bold uppercase mb-1">Ao Toque</span>
+                                <span class="text-base font-semibold text-gray-900">${prod.aplicacao.secagem.toque}</span>
+                            </div>
+                            <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                <span class="block text-xs text-gray-500 font-bold uppercase mb-1">Entre Demãos</span>
+                                <span class="text-base font-semibold text-gray-900">${prod.aplicacao.secagem.entre}</span>
+                            </div>
+                            <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                <span class="block text-xs text-gray-500 font-bold uppercase mb-1">Final</span>
+                                <span class="text-base font-semibold text-gray-900">${prod.aplicacao.secagem.final}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-6">
+                    <h4 class="text-lg font-bold text-gray-900 mb-4"><i class="fa-solid fa-chart-pie text-suvinil-orange mr-2"></i>Rendimento Acabado por Embalagem</h4>
+                    <div class="overflow-x-auto">
+                        <table>
+                            <thead><tr><th>Embalagem</th><th>Rendimento Aproximado</th></tr></thead>
+                            <tbody>${buildTableRows(prod.rendimentoEmbalagem, 'emb', 'valor')}</tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-6">
+                    <h4 class="text-lg font-bold text-gray-900 mb-1"><i class="fa-solid fa-clipboard-check text-suvinil-orange mr-2"></i>Desempenho & Normas</h4>
+                    <p class="text-xs text-gray-500 mb-4">Classificação: ${prod.normas.nbr} | Tipo: ${prod.normas.tipo} | Função: ${prod.normas.funcao}</p>
+                    <div class="overflow-x-auto">
+                        <table>
+                            <thead><tr><th>Ensaio / Norma ABNT</th><th>Mínimo Exigido</th><th>Desempenho deste produto</th></tr></thead>
+                            <tbody>
+                                ${prod.desempenho.map(d => `<tr><td class="font-medium text-gray-700">${d.ensaio}</td><td class="text-gray-500">${d.minimo}</td><td class="font-semibold text-gray-900">${d.produto}</td></tr>`).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-6">
+                    <h4 class="text-lg font-bold text-gray-900 mb-4"><i class="fa-solid fa-flask text-suvinil-orange mr-2"></i>Informações Técnicas</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                        <div class="bg-gray-50 p-3 rounded text-sm"><strong class="block text-gray-800">Sólidos/Massa</strong>${prod.infoTecnica.solidosMassa}</div>
+                        <div class="bg-gray-50 p-3 rounded text-sm"><strong class="block text-gray-800">Sólidos/Volume</strong>${prod.infoTecnica.solidosVolume}</div>
+                        <div class="bg-gray-50 p-3 rounded text-sm"><strong class="block text-gray-800">Densidade</strong>${prod.infoTecnica.densidade}</div>
+                        <div class="bg-gray-50 p-3 rounded text-sm"><strong class="block text-gray-800">pH / Validade</strong>${prod.infoTecnica.ph} <br> ${prod.infoTecnica.validade}</div>
+                    </div>
+                    <div class="text-sm text-gray-600 bg-gray-50 p-4 border border-gray-100 rounded-lg">
+                        <strong class="text-gray-900 block mb-1">Composição:</strong>
+                        ${prod.infoTecnica.composicao}
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-6">
+                    <h4 class="text-lg font-bold text-gray-900 mb-4"><i class="fa-solid fa-trowel text-suvinil-orange mr-2"></i>Preparação da Parede & Aplicação</h4>
+                    
+                    <h5 class="font-bold text-gray-800 mb-2 mt-6">O que você deve fazer?</h5>
+                    <div class="overflow-x-auto mb-6">
+                        <table>
+                            <thead><tr><th>Condição da Parede</th><th>Ação Recomendada</th></tr></thead>
+                            <tbody>
+                                ${buildTableRows(TEXTS.prepararParedeGeral, 'condicao', 'acao')}
+                                ${buildTableRows(prod.preparacaoEspecial, 'condicao', 'acao')}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h5 class="font-bold text-gray-800 mb-3 mt-6">Passo a Passo</h5>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        ${prod.passoAPasso.map(p => `
+                            <div class="border border-gray-200 rounded p-3 bg-gray-50">
+                                <strong class="text-sm text-suvinil-orange block mb-1">${p.t}</strong>
+                                <p class="text-xs text-gray-600">${p.d}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <h5 class="font-bold text-gray-800 mb-2 mt-6">Vai usar Airless?</h5>
+                    <div class="bg-blue-50 border border-blue-100 rounded p-4 text-sm text-gray-700 space-y-2">
+                        ${TEXTS.airless.map(p => `<p>${p}</p>`).join('')}
+                    </div>
+                </div>
+
+                <div class="bg-red-50 border border-red-100 rounded-xl p-6 mb-2 text-sm text-gray-700">
+                    <h4 class="text-red-800 font-bold mb-2"><i class="fa-solid fa-triangle-exclamation mr-2"></i>Observações e Cuidados</h4>
+                    <p class="mb-4"><strong>Sobre o produto:</strong> ${prod.observacoes}</p>
+                    <p class="text-xs opacity-90">${TEXTS.precaucoesGerais}</p>
+                </div>
+            `;
+            
+            modalBody.innerHTML = html;
+            modal.classList.remove('hidden');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.classList.remove('modal-open');
+            modalBody.innerHTML = '';
+        }
+
+        // Event Listeners
+        closeModalBtn.addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('click', closeModal);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+            if (e.key === 'Escape' && !document.getElementById('calc-modal').classList.contains('hidden')) closeCalcModal();
+            if (e.key === 'Escape' && !document.getElementById('full-color-modal').classList.contains('hidden')) closeFullColorModal();
+        });
+
+        function filterLogic() {
+            const term = searchInput.value.toLowerCase();
+            const linha = filterLinha.value;
+            const acabamento = filterAcabamento.value;
+
+            const filtered = products.filter(p => {
+                const matchLinha = linha === 'all' || p.linha === linha;
+                const matchAcabamento = acabamento === 'all' || p.acabamento.includes(acabamento);
+                const matchTerm = p.name.toLowerCase().includes(term) || 
+                                  p.atributos.join(' ').toLowerCase().includes(term) || 
+                                  p.uso.toLowerCase().includes(term);
+                return matchLinha && matchAcabamento && matchTerm;
+            });
+            renderProducts(filtered);
+        }
+
+        searchInput.addEventListener('input', filterLogic);
+        filterLinha.addEventListener('change', filterLogic);
+        filterAcabamento.addEventListener('change', filterLogic);
+
+        // Initial Render
+        renderProducts(products);
+
+
+        // === NOVA CALCULADORA DE m², CORES E TENDÊNCIAS (LOGICA) ===
+        
+        // 1. DADOS DE CORES E TENDÊNCIAS
+        const suvinilColors = [
+            { name: "Céu de Inverno", hex: "#E2E8F0" }, { name: "Algodão Egípcio", hex: "#F3EAD3" }, { name: "Ouro Branco", hex: "#E9E3D3" },
+            { name: "Elefante", hex: "#8A8A8A" }, { name: "Tubarão Branco", hex: "#D4D9D9" }, { name: "Ovelha", hex: "#E5DCCF" },
+            { name: "Meia-Luz", hex: "#D39F93" }, { name: "Terracota", hex: "#A85341" }, { name: "Areia do Deserto", hex: "#D2B48C" },
+            { name: "Pistache", hex: "#93C572" }, { name: "Folha de Sálvia", hex: "#7B9A7B" }, { name: "Verde Garrafa", hex: "#006400" },
+            { name: "Azul Etéreo", hex: "#B0C4DE" }, { name: "Mergulho", hex: "#1C39BB" }, { name: "Oceano Profundo", hex: "#000080" },
+            { name: "Pó de Zinco", hex: "#B0B0B0" }, { name: "Cimento Queimado", hex: "#707070" }, { name: "Asfalto", hex: "#3A3A3A" },
+            { name: "Mostarda", hex: "#E1AD21" }, { name: "Pôr do Sol", hex: "#FF7F50" }, { name: "Vinho Tinto", hex: "#722F37" },
+            { name: "Rosa Chá", hex: "#F4C2C2" }, { name: "Lilás Suave", hex: "#C8A2C8" }, { name: "Berinjela", hex: "#4B0082" }
+        ];
+
+        const trends2026 = [
+            { name: "Terracotta Calm", desc: "Tons terrosos que trazem aterramento e aconchego ao lar.", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", prod: "toque-fosco-completo" },
+            { name: "Verde Sage", desc: "A conexão com a natureza trazida para dentro dos ambientes.", img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", prod: "fosco-sempre-limpo" },
+            { name: "Azul Sereno", desc: "Tranquilidade e foco para espaços de descanso e trabalho.", img: "https://images.unsplash.com/photo-1598928506311-c55dd58025cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", prod: "toque-seda" },
+            { name: "Areia Dourada", desc: "Luminosidade suave e neutra, perfeita para salas amplas.", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", prod: "rende-cobre-muito" },
+            { name: "Cinza Minimalista", desc: "A base perfeita para uma decoração contemporânea.", img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", prod: "toque-fosco-select" },
+            { name: "Proteção Externa", desc: "Cores vibrantes que resistem às intempéries na fachada.", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", prod: "fachada-protegida" }
+        ];
+
+        // 2. RENDERIZAR CORES E TENDÊNCIAS
+        function initNewSections() {
+            // Palette Preview
+            const palettePreview = document.getElementById('color-palette-container');
+            const paletteFull = document.getElementById('full-color-grid');
+            let previewHtml = '';
+            let fullHtml = '';
+            
+            // Generate some extra random colors for the full modal to simulate 1700
+            const fullColors = [...suvinilColors];
+            for(let i=0; i<56; i++) {
+                const r = Math.floor(Math.random()*255);
+                const g = Math.floor(Math.random()*255);
+                const b = Math.floor(Math.random()*255);
+                //fullColors.push({ name: `Tom SelfColor ${i+1}`, hex: `#${r.toString(16).padStart(2,'0')}${g.toString(16).padStart(2,'0')}${b.toString(16).padStart(2,'0')}`});
+            }
+
+            suvinilColors.forEach(c => {
+                previewHtml += `
+                    <div class="color-swatch h-16 rounded-xl shadow-inner relative group" style="background-color: ${c.hex}">
+                        <div class="tooltip-custom absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 bg-gray-900 text-white text-xs rounded p-2 z-50 text-center">
+                            <strong class="block">${c.name}</strong>
+                            <span>${c.hex}</span>
+                            <div class="mt-1 pt-1 border-t border-gray-700 text-[10px] text-suvinil-orange">Disponível em SelfColor</div>
+                            <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            fullColors.forEach(c => {
+                fullHtml += `
+                    <div class="flex flex-col items-center group cursor-pointer">
+                        <div class="w-full h-16 rounded shadow-inner mb-1 transition-transform group-hover:scale-105 border border-gray-200" style="background-color: ${c.hex}"></div>
+                        <span class="text-[10px] text-gray-500 font-medium text-center truncate w-full">${c.name}</span>
+                    </div>
+                `;
+            });
+
+            palettePreview.innerHTML = previewHtml;
+            paletteFull.innerHTML = fullHtml;
+
+/*             // Trends
+            const trendsGrid = document.getElementById('trends-grid');
+            let trendsHtml = '';
+            trends2026.forEach(t => {
+                trendsHtml += `
+                    <div class="trend-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" onclick="openModal('${t.prod}')">
+                        <div class="h-48 overflow-hidden">
+                            <img src="${t.img}" alt="${t.name}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">${t.name}</h4>
+                            <p class="text-sm text-gray-600 mb-4">${t.desc}</p>
+                            <button class="text-sm font-bold text-suvinil-orange hover:text-orange-700 flex items-center gap-1">
+                                Ver produtos que combinam <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            trendsGrid.innerHTML = trendsHtml; */
+
+            // Populate Calculator Dropdown
+            const calcProductSelect = document.getElementById('calc-product');
+            calcProductSelect.innerHTML = products.map(p => `<option value="${p.id}">${p.name} (${p.linha})</option>`).join('');
+        }
+
+        // 3. LÓGICA DA CALCULADORA
+        let wallCount = 0;
+        
+        function addCalcWall() {
+            wallCount++;
+            const container = document.getElementById('calc-walls-container');
+            const wallRow = document.createElement('div');
+            wallRow.className = "wall-row flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-200 shadow-sm";
+            wallRow.id = `wall-${wallCount}`;
+            wallRow.innerHTML = `
+                <div class="flex-1 flex gap-2">
+                    <div class="flex-1">
+                        <label class="block text-[10px] text-gray-500 uppercase font-bold mb-1">Altura (m)</label>
+                        <input type="number" min="0" step="0.1" class="wall-h w-full border-gray-300 rounded focus:ring-suvinil-orange p-2 text-sm bg-gray-50" placeholder="Ex: 2.8">
+                    </div>
+                    <div class="flex items-center justify-center pt-5 text-gray-400">×</div>
+                    <div class="flex-1">
+                        <label class="block text-[10px] text-gray-500 uppercase font-bold mb-1">Largura (m)</label>
+                        <input type="number" min="0" step="0.1" class="wall-w w-full border-gray-300 rounded focus:ring-suvinil-orange p-2 text-sm bg-gray-50" placeholder="Ex: 4.0">
+                    </div>
+                </div>
+                <div class="pt-5">
+                    <button onclick="removeCalcWall('${wallRow.id}')" class="text-red-500 hover:text-red-700 p-2 rounded bg-red-50 hover:bg-red-100 transition-colors">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            container.appendChild(wallRow);
+        }
+
+        function removeCalcWall(id) {
+            document.getElementById(id).remove();
+        }
+
+        function toggleDiscounts() {
+            const area = document.getElementById('calc-discounts-area');
+            if(document.getElementById('calc-discount-check').checked) {
+                area.classList.remove('hidden');
+            } else {
+                area.classList.add('hidden');
+                document.getElementById('calc-doors').value = 0;
+                document.getElementById('calc-windows').value = 0;
+            }
+        }
+
+        function runCalculation() {
+            const prodId = document.getElementById('calc-product').value;
+            const coats = parseInt(document.getElementById('calc-coats').value);
+            const product = products.find(p => p.id === prodId);
+            
+            // Calcular área
+            let totalArea = 0;
+            document.querySelectorAll('.wall-row').forEach(row => {
+                const w = parseFloat(row.querySelector('.wall-w').value) || 0;
+                const h = parseFloat(row.querySelector('.wall-h').value) || 0;
+                totalArea += (w * h);
+            });
+
+            // Descontos
+            if(document.getElementById('calc-discount-check').checked) {
+                const doors = parseFloat(document.getElementById('calc-doors').value) || 0;
+                const windows = parseFloat(document.getElementById('calc-windows').value) || 0;
+                totalArea -= (doors + windows);
+            }
+
+            if (totalArea <= 0) {
+                alert("Por favor, adicione paredes com medidas válidas maiores que zero.");
+                return;
+            }
+
+            // O "rendimento acabado" da lata (18L/20L) já pressupõe o uso padrão (2 a 3 demãos).
+            // Para sermos fiéis ao manual, vamos considerar que o valor da lata atende 2 demãos.
+            // Se o usuário pedir 3 demãos, multiplicamos a área necessária por 1.5.
+            
+            const yieldPerLata = product.calcYield; // m2 acabado per 18L
+            const yieldPerGalao = yieldPerLata / 5; // 3.6L is 1/5th of 18L approx
+            const yieldPerQuarto = yieldPerLata / 20; // 0.9L is 1/20th
+
+            // Ajuste de demãos
+            let adjustedArea = totalArea;
+            if (coats === 3) {
+                adjustedArea = totalArea * 1.5; // Precisa de 50% a mais de tinta
+            }
+
+            let latas = 0;
+            let galoes = 0;
+            let quartos = 0;
+
+            let remainingArea = adjustedArea;
+
+            if (remainingArea >= yieldPerLata * 0.8) {
+                latas = Math.floor(remainingArea / yieldPerLata);
+                remainingArea = remainingArea % yieldPerLata;
+            }
+            if (remainingArea >= yieldPerGalao * 0.8 || (latas === 0 && remainingArea > yieldPerQuarto)) {
+                galoes = Math.floor(remainingArea / yieldPerGalao);
+                remainingArea = remainingArea % yieldPerGalao;
+                if(remainingArea > (yieldPerGalao/2)) galoes++; // round up if big
+            } else if (remainingArea > 0) {
+                quartos = Math.ceil(remainingArea / yieldPerQuarto);
+            }
+
+            // fallback se tudo arredondou pra zero mas tem área
+            if (latas===0 && galoes===0 && quartos===0 && adjustedArea > 0) {
+                quartos = 1;
+            }
+            if (quartos >= 4) { galoes++; quartos = 0; }
+            if (galoes >= 5) { latas++; galoes = 0; }
+
+            // Renderizar resultados
+            document.getElementById('res-area').textContent = totalArea.toFixed(2) + ' m²';
+            document.getElementById('res-yield').textContent = yieldPerLata + ' m² / Lata (18L)';
+            
+            const cansList = document.getElementById('res-cans-list');
+            cansList.innerHTML = '';
+            if(latas > 0) cansList.innerHTML += `<li><i class="fa-solid fa-bucket text-gray-400 mr-2"></i> ${latas}x Lata(s) (18L ou 20L)</li>`;
+            if(galoes > 0) cansList.innerHTML += `<li><i class="fa-solid fa-fill-drip text-gray-400 mr-2"></i> ${galoes}x Galão(ões) (3,2L ou 3,6L)</li>`;
+            if(quartos > 0) cansList.innerHTML += `<li><i class="fa-solid fa-spray-can text-gray-400 mr-2"></i> ${quartos}x Quarto(s) (0,8L ou 0,9L)</li>`;
+
+            document.getElementById('calc-results').classList.remove('hidden');
+        }
+
+        function openCalcModal() {
+            if(wallCount === 0) addCalcWall(); // adiciona 1 parede padrao
+            document.getElementById('calc-results').classList.add('hidden');
+            document.getElementById('calc-modal').classList.remove('hidden');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeCalcModal() {
+            document.getElementById('calc-modal').classList.add('hidden');
+            document.body.classList.remove('modal-open');
+        }
+
+        function useProductFromCalc() {
+            const prodId = document.getElementById('calc-product').value;
+            closeCalcModal();
+            openModal(prodId);
+        }
+
+        function openFullColorModal() {
+            document.getElementById('full-color-modal').classList.remove('hidden');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeFullColorModal() {
+            document.getElementById('full-color-modal').classList.add('hidden');
+            document.body.classList.remove('modal-open');
+        }
+
+        // Initialize additions on load
+        window.addEventListener('DOMContentLoaded', initNewSections);
+
+    </script>
+</body>
+</html>
